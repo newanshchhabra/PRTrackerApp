@@ -1,0 +1,49 @@
+﻿<Window x:Class="PRTrackerApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PR Tracker" Height="600" Width="900">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Input Controls -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Left">
+            <StackPanel Margin="5">
+                <TextBlock Text="Summary" Margin="0,0,0,5"/>
+                <TextBox x:Name="SummaryTextBox" Width="200"/>
+            </StackPanel>
+
+            <StackPanel Margin="5">
+                <TextBlock Text="Engineer Name" Margin="0,0,0,5"/>
+                <TextBox x:Name="EngineerTextBox" Width="150"/>
+            </StackPanel>
+
+            <StackPanel Margin="5">
+                <TextBlock Text="Severity" Margin="0,0,0,5"/>
+                <ComboBox x:Name="SeverityComboBox" Width="120">
+                    <ComboBoxItem Content="Critical"/>
+                    <ComboBoxItem Content="Major"/>
+                    <ComboBoxItem Content="Minor"/>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Margin="5" VerticalAlignment="Bottom">
+                <Button Content="Create PR" Click="CreatePR_Click" Width="100" Margin="0,0,0,5"/>
+                <Button Content="Update PR" Click="UpdatePR_Click" Width="100" Margin="0,0,0,5"/>
+                <Button Content="Delete PR" Click="DeletePR_Click" Width="100" Margin="0,0,0,5"/>
+                <Button Content="Load PRs" Click="LoadPRs_Click" Width="100"/>
+            </StackPanel>
+        </StackPanel>
+
+        <DataGrid x:Name="PRDataGrid"
+          Grid.Row="1"
+          AutoGenerateColumns="True"
+          IsReadOnly="True"
+          SelectionMode="Single"
+          SelectionUnit="FullRow"
+          SelectionChanged="PRDataGrid_SelectionChanged"
+          Margin="0,10,0,0" />
+    </Grid>
+</Window>

@@ -1,4 +1,4 @@
-using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;  // connects us to the MySQL server
 using System;
 using System.Data;
 using System.Windows;
@@ -8,14 +8,14 @@ namespace PRTrackerApp
 {
     public partial class MainWindow : Window
     {
-        private string connStr = "server=localhost;user=root;password=AnshChhabra2110;database=alcatel;";
+        private string connStr = "server=localhost;user=root;password=AnshChhabra2110;database=alcatel;";  //alcatel database created using data provided
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void ClearForm_Click(object sender, RoutedEventArgs e)
+        private void ClearForm_Click(object sender, RoutedEventArgs e)   // all the textboxes are reset to blank
         {
             PRIdTextBox.Text = "";
             SummaryTextBox.Text = "";
@@ -45,16 +45,16 @@ namespace PRTrackerApp
             PRDataGrid.SelectedIndex = -1;
         }
 
-        private void CreatePR_Click(object sender, RoutedEventArgs e)
+        private void CreatePR_Click(object sender, RoutedEventArgs e)   // Create function
         {
             try
             {
-                using var conn = new MySqlConnection(connStr);
+                using var conn = new MySqlConnection(connStr);  // establishes database connection
                 conn.Open();
 
                 string sql = @"
                     INSERT INTO prtable (
-                        pr, summary, manager_name, engineer_name, severity, status, tester_name,
+                        pr, summary, manager_name, engineer_name, severity, status, tester_name,   // puts all the values entered into the textboxes into thir respective variables
                         category, sub_category, meeting_minutes, pr_cr_date, rtr, pr_active,
                         action_owner, age, engineering_comment, num_blocking_tc, pr_release,
                         pr_origin, vf_product, blocking, pr_rca, pr_rcasummary, pr_rca_action,
@@ -67,13 +67,15 @@ namespace PRTrackerApp
                         @pr_rca_type, @vtbf_age
                     )";
 
-                using var cmd = new MySqlCommand(sql, conn);
+                using var cmd = new MySqlCommand(sql, conn);    // puts all of the variable values into the database after processing them to avoid injection
+                                                                // ( which is a security risk caused when data is treated as code)
 
-                cmd.Parameters.AddWithValue("@pr", Convert.ToInt32(PRIdTextBox.Text));
+                cmd.Parameters.AddWithValue("@pr", Convert.ToInt32(PRIdTextBox.Text));    // converts whatever number value is added here into string
                 cmd.Parameters.AddWithValue("@summary", SummaryTextBox.Text);
                 cmd.Parameters.AddWithValue("@manager_name", ManagerTextBox.Text);
                 cmd.Parameters.AddWithValue("@engineer_name", EngineerTextBox.Text);
-                cmd.Parameters.AddWithValue("@severity", ((ComboBoxItem)SeverityComboBox.SelectedItem)?.Content.ToString());
+                cmd.Parameters.AddWithValue("@severity", ((ComboBoxItem)SeverityComboBox.SelectedItem)?.Content.ToString());    // converts whichever option was selected in the drop 
+                                                                                                                                // down to a string so that it can be placed in the database
                 cmd.Parameters.AddWithValue("@status", StatusTextBox.Text);
                 cmd.Parameters.AddWithValue("@tester_name", TesterTextBox.Text);
                 cmd.Parameters.AddWithValue("@category", CategoryTextBox.Text);
@@ -93,19 +95,19 @@ namespace PRTrackerApp
                 cmd.Parameters.AddWithValue("@pr_rcasummary", RCASummaryTextBox.Text);
                 cmd.Parameters.AddWithValue("@pr_rca_action", RCAActionTextBox.Text);
                 cmd.Parameters.AddWithValue("@pr_rca_type", RCATypeTextBox.Text);
-                cmd.Parameters.AddWithValue("@vtbf_age", Convert.ToDouble(VTBFAgeTextBox.Text));
+                cmd.Parameters.AddWithValue("@vtbf_age", Convert.ToDouble(VTBFAgeTextBox.Text));    // converts input to a double(number with decimal) 
 
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("✅ PR Created Successfully!");
+                MessageBox.Show("✅ PR Created Successfully!");    //Inserts the data
                 LoadPRs();
             }
-            catch (Exception ex)
+            catch (Exception ex)    // error detection message
             {
                 MessageBox.Show("❌ Error inserting PR: " + ex.Message);
             }
         }
 
-        private void LoadPRs_Click(object sender, RoutedEventArgs e)
+        private void LoadPRs_Click(object sender, RoutedEventArgs e)     //
         {
             LoadPRs();
         }

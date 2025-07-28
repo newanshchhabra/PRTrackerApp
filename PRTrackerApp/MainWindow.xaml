@@ -85,10 +85,25 @@
                     <TextBlock Text="Release:" Width="150"/>
                     <TextBox x:Name="PRReleaseTextBox" Width="200"/>
                 </WrapPanel>
+                
                 <WrapPanel Margin="0,5">
                     <TextBlock Text="PR Origin:" Width="150"/>
-                    <TextBox x:Name="PROriginTextBox" Width="200"/>
+                    <ComboBox x:Name="PROriginComboBox" Width="300">
+                        <ComboBoxItem Content="Testing Engineering"/>
+                        <ComboBoxItem Content="Customer Service"/>
+                        <ComboBoxItem Content="SQA"/>
+                        <ComboBoxItem Content="Engineering"/>
+                        <ComboBoxItem Content="Simulation"/>
+                        <ComboBoxItem Content="HQA"/>
+                        <ComboBoxItem Content="Manufacturing"/>
+                        <ComboBoxItem Content="Dev-AOS-Reuse"/>
+                        <ComboBoxItem Content="MIS"/>
+                        <ComboBoxItem Content="PT-AOS-Reuse"/>
+                        <ComboBoxItem Content="SQA-Delta"/>
+                    </ComboBox>
                 </WrapPanel>
+
+
                 <WrapPanel Margin="0,5">
                     <TextBlock Text="Product:" Width="150"/>
                     <TextBox x:Name="ProductTextBox" Width="200"/>
@@ -97,22 +112,61 @@
                     <TextBlock Text="Blocking:" Width="150"/>
                     <TextBox x:Name="BlockingTextBox" Width="200"/>
                 </WrapPanel>
+
                 <WrapPanel Margin="0,5">
                     <TextBlock Text="RCA:" Width="150"/>
-                    <TextBox x:Name="RCATextBox" Width="200"/>
+                    <ComboBox x:Name="RCATextBox" Width="300">
+                        <ComboBoxItem Content="noRCA"/>
+                        <ComboBoxItem Content="minorCE"/>
+                        <ComboBoxItem Content="largeCE"/>
+                        <ComboBoxItem Content="minorDesign"/>
+                        <ComboBoxItem Content="majorDesign"/>
+                        <ComboBoxItem Content="merge"/>
+                        <ComboBoxItem Content="designComm"/>
+                        <ComboBoxItem Content="duplicate"/>
+                        <ComboBoxItem Content="existing"/>
+                        <ComboBoxItem Content="nofix"/>
+                        <ComboBoxItem Content="collateralDamage"/>
+                        <ComboBoxItem Content="scalability"/>
+                        <ComboBoxItem Content="user"/>
+                        <ComboBoxItem Content="invalidTest"/>
+                        <ComboBoxItem Content="unknown"/>
+                        <ComboBoxItem Content="linux"/>
+                        <ComboBoxItem Content="hw"/>
+                        <ComboBoxItem Content="other"/>
+                        <ComboBoxItem Content="reqUnclear"/>
+                        <ComboBoxItem Content="extern(BCM)"/>
+                        <ComboBoxItem Content="Deferred"/>
+                    </ComboBox>
                 </WrapPanel>
+
                 <WrapPanel Margin="0,5">
                     <TextBlock Text="RCA Summary:" Width="150"/>
                     <TextBox x:Name="RCASummaryTextBox" Width="400"/>
                 </WrapPanel>
                 <WrapPanel Margin="0,5">
                     <TextBlock Text="RCA Action:" Width="150"/>
-                    <TextBox x:Name="RCAActionTextBox" Width="200"/>
+                    <ComboBox x:Name="RCAActionComboBox" Width="300">
+                        <ComboBoxItem Content="noAction"/>
+                        <ComboBoxItem Content="addUT"/>
+                        <ComboBoxItem Content="addPALTest"/>
+                        <ComboBoxItem Content="informReviewer"/>
+                        <ComboBoxItem Content="informArchitecture"/>
+                    </ComboBox>
                 </WrapPanel>
+
                 <WrapPanel Margin="0,5">
                     <TextBlock Text="RCA Type:" Width="150"/>
-                    <TextBox x:Name="RCATypeTextBox" Width="200"/>
+                    <ComboBox x:Name="RCATypeComboBox" Width="300">
+                        <ComboBoxItem Content="Undefined"/>
+                        <ComboBoxItem Content="newCode"/>
+                        <ComboBoxItem Content="Existing"/>
+                        <ComboBoxItem Content="Broken"/>
+                        <ComboBoxItem Content="N/A"/>
+                    </ComboBox>
                 </WrapPanel>
+
+
                 <WrapPanel Margin="0,5">
                     <TextBlock Text="VTBF Age:" Width="150"/>
                     <TextBox x:Name="VTBFAgeTextBox" Width="200"/>
@@ -125,11 +179,11 @@
 
             <!-- Buttons -->
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
-                <Button Content="🆕 Clear Form" Click="ClearForm_Click" Width="120" Margin="5" Background="LightGray"/>
-                <Button Content="✅ Create PR" Click="CreatePR_Click" Width="120" Margin="5" Background="LightGreen"/>
-                <Button Content="✏️ Update PR" Click="UpdatePR_Click" Width="120" Margin="5" Background="Khaki"/>
-                <Button Content="🗑️ Delete PR" Click="DeletePR_Click" Width="120" Margin="5" Background="LightCoral"/>
-                <Button Content="🔄 Load PRs" Click="LoadPRs_Click" Width="120" Margin="5"/>
+                <Button Content="Clear Form" Click="ClearForm_Click" Width="120" Margin="5" Background="LightGray"/>
+                <Button Content="Create PR" Click="CreatePR_Click" Width="120" Margin="5" Background="LightGreen"/>
+                <Button Content="Update PR" Click="UpdatePR_Click" Width="120" Margin="5" Background="Khaki"/>
+                <Button Content="Delete PR" Click="DeletePR_Click" Width="120" Margin="5" Background="LightCoral"/>
+                <Button Content="Load PRs" Click="LoadPRs_Click" Width="120" Margin="5"/>
             </StackPanel>
         </Grid>
     </ScrollViewer>

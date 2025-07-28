@@ -39,8 +39,21 @@
                 </WrapPanel>
                 <WrapPanel Margin="0,5">
                     <TextBlock Text="Status:" Width="150"/>
-                    <TextBox x:Name="StatusTextBox" Width="200"/>
+                    <ComboBox x:Name="StatusComboBox" Width="200">
+                        <ComboBoxItem Content="Canceled"/>
+                        <ComboBoxItem Content="Closed"/>
+                        <ComboBoxItem Content="Duplicate"/>
+                        <ComboBoxItem Content="Evaluating"/>
+                        <ComboBoxItem Content="Feedback"/>
+                        <ComboBoxItem Content="Informational"/>
+                        <ComboBoxItem Content="Monitoring"/>
+                        <ComboBoxItem Content="Open"/>
+                        <ComboBoxItem Content="Verify"/>
+                        <ComboBoxItem Content="Deleted"/>
+                        <ComboBoxItem Content="Deferred"/>
+                    </ComboBox>
                 </WrapPanel>
+
                 <WrapPanel Margin="0,5">
                     <TextBlock Text="Tester Name:" Width="150"/>
                     <TextBox x:Name="TesterTextBox" Width="200"/>
